@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mohr’s Circle Quiz (2D & 3D)</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; }
+    .container { width: 90%; max-width: 960px; margin: 24px auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .logo { text-align: center; margin-bottom: 12px; }
+    .logo img { max-width: 180px; height: auto; }
+    h1 { text-align: center; margin-top: 0; }
+    .meta { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+    .meta input[type="email"] { padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; min-width: 280px; }
+    .question { margin: 16px 0; padding: 12px 10px; border-bottom: 1px solid #eee; }
+    .question h3 { margin: 0 0 8px; font-size: 18px; }
+    .options label { display: block; margin: 6px 0; cursor: pointer; }
+    .options input { margin-right: 8px; }
+    .submit-btn { display: block; width: 100%; padding: 14px; font-size: 16px; margin-top: 16px; background: #2563eb; color: #fff; border: 0; border-radius: 10px; cursor: pointer; }
+    .submit-btn:hover { background: #1d4ed8; }
+    .result { display: none; text-align: center; font-size: 20px; margin-top: 16px; }
+    .correct { background-color: #c8e6c9; }
+    .incorrect { background-color: #ffcdd2; }
+    .note { text-align:center; font-size: 12px; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="Logo" onerror="this.style.display='none'">
+    </div>
+    <h1>Mohr’s Circle Quiz (2D & 3D)</h1>
+
+    <div class="meta">
+      <label for="userEmail">Your Email:</label>
+      <input type="email" id="userEmail" placeholder="you@example.com" required />
+    </div>
+    <p class="note">Your email is used to send results to the instructor’s inbox.</p>
+
+    <form id="quizForm">
+      <!-- Q1 -->
+      <div class="question" data-answer="B">
+        <h3>Q1: A plane stress element has σx = 50 MPa, σy = 20 MPa, τxy = 30 MPa. The radius of Mohr's Circle is:</h3>
+        <div class="options">
+          <label><input type="radio" name="q1" value="A"> A) 25 MPa</label>
+          <label><input type="radio" name="q1" value="B"> B) 35 MPa</label>
+          <label><input type="radio" name="q1" value="C"> C) 30 MPa</label>
+          <label><input type="radio" name="q1" value="D"> D) 40 MPa</label>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question" data-answer="C">
+        <h3>Q2: For the same element, the maximum shear stress is:</h3>
+        <div class="options">
+          <label><input type="radio" name="q2" value="A"> A) 25 MPa</label>
+          <label><input type="radio" name="q2" value="B"> B) 30 MPa</label>
+          <label><input type="radio" name="q2" value="C"> C) 35 MPa</label>
+          <label><input type="radio" name="q2" value="D"> D) 40 MPa</label>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question" data-answer="C">
+        <h3>Q3: The center of Mohr’s Circle for plane stress is located at:</h3>
+        <div class="options">
+          <label><input type="radio" name="q3" value="A"> A) (σx, τxy)</label>
+          <label><input type="radio" name="q3" value="B"> B) (σy, -τxy)</label>
+          <label><input type="radio" name="q3" value="C"> C) ((σx+σy)/2, 0)</label>
+          <label><input type="radio" name="q3" value="D"> D) (0, τxy)</label>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question" data-answer="A">
+        <h3>Q4: In Mohr’s Circle, the horizontal axis represents:</h3>
+        <div class="options">
+          <label><input type="radio" name="q4" value="A"> A) Normal stress</label>
+          <label><input type="radio" name="q4" value="B"> B) Shear stress</label>
+          <label><input type="radio" name="q4" value="C"> C) Principal stress only</label>
+          <label><input type="radio" name="q4" value="D"> D) Strain energy</label>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question" data-answer="B">
+        <h3>Q5: If σx = σy, the Mohr’s Circle reduces to:</h3>
+        <div class="options">
+          <label><input type="radio" name="q5" value="A"> A) A circle with radius τxy</label>
+          <label><input type="radio" name="q5" value="B"> B) A point at (σx, 0)</label>
+          <label><input type="radio" name="q5" value="C"> C) A line</label>
+          <label><input type="radio" name="q5" value="D"> D) A vertical axis</label>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question" data-answer="C">
+        <h3>Q6: Principal stresses are located on Mohr’s Circle at:</h3>
+        <div class="options">
+          <label><input type="radio" name="q6" value="A"> A) Top and bottom of circle</label>
+          <label><input type="radio" name="q6" value="B"> B) Center</label>
+          <label><input type="radio" name="q6" value="C"> C) Leftmost and rightmost points</label>
+          <label><input type="radio" name="q6" value="D"> D) At 45° from center</label>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question" data-answer="D">
+        <h3>Q7: For a biaxial stress case (σz = 0), Mohr’s Circle in 3D reduces to:</h3>
+        <div class="options">
+          <label><input type="radio" name="q7" value="A"> A) Three circles</label>
+          <label><input type="radio" name="q7" value="B"> B) A line</label>
+          <label><input type="radio" name="q7" value="C"> C) One circle</label>
+          <label><input type="radio" name="q7" value="D"> D) Two circles</label>
+        </div>
+      </div>
+
+      <!-- Q8 (Revised) -->
+      <div class="question" data-answer="B">
+        <h3>Q8: In 3D Mohr’s Circle, each circle represents:</h3>
+        <div class="options">
+          <label><input type="radio" name="q8" value="A"> A) Stresses in x, y, z directions</label>
+          <label><input type="radio" name="q8" value="B"> B) Stress state on a plane defined by two principal stresses</label>
+          <label><input type="radio" name="q8" value="C"> C) Only shear stresses</label>
+          <label><input type="radio" name="q8" value="D"> D) Mohr’s strain representation</label>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question" data-answer="A">
+        <h3>Q9: In 3D Mohr’s Circle, the maximum shear stress is given by:</h3>
+        <div class="options">
+          <label><input type="radio" name="q9" value="A"> A) (σ1 − σ3)/2</label>
+          <label><input type="radio" name="q9" value="B"> B) (σ1 − σ2)/2</label>
+          <label><input type="radio" name="q9" value="C"> C) (σ2 − σ3)/2</label>
+          <label><input type="radio" name="q9" value="D"> D) (σ1 + σ3)/2</label>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question" data-answer="D">
+        <h3>Q10: The number of circles in 3D Mohr’s representation is:</h3>
+        <div class="options">
+          <label><input type="radio" name="q10" value="A"> A) 1</label>
+          <label><input type="radio" name="q10" value="B"> B) 2</label>
+          <label><input type="radio" name="q10" value="C"> C) 4</label>
+          <label><input type="radio" name="q10" value="D"> D) 3</label>
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question" data-answer="C">
+        <h3>Q11: The orientation of principal planes can be determined from Mohr’s Circle by measuring:</h3>
+        <div class="options">
+          <label><input type="radio" name="q11" value="A"> A) Shear stress axis intercept</label>
+          <label><input type="radio" name="q11" value="B"> B) Radius of circle</label>
+          <label><input type="radio" name="q11" value="C"> C) Angle between radius and σ axis</label>
+          <label><input type="radio" name="q11" value="D"> D) Diameter</label>
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question" data-answer="B">
+        <h3>Q12: A stress element has σ1 = 100 MPa, σ3 = 20 MPa. The maximum shear stress is:</h3>
+        <div class="options">
+          <label><input type="radio" name="q12" value="A"> A) 30 MPa</label>
+          <label><input type="radio" name="q12" value="B"> B) 40 MPa</label>
+          <label><input type="radio" name="q12" value="C"> C) 60 MPa</label>
+          <label><input type="radio" name="q12" value="D"> D) 80 MPa</label>
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question" data-answer="A">
+        <h3>Q13: In Mohr’s Circle, the shear stress is plotted on:</h3>
+        <div class="options">
+          <label><input type="radio" name="q13" value="A"> A) Vertical axis</label>
+          <label><input type="radio" name="q13" value="B"> B) Horizontal axis</label>
+          <label><input type="radio" name="q13" value="C"> C) 45° line</label>
+          <label><input type="radio" name="q13" value="D"> D) None of the above</label>
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question" data-answer="D">
+        <h3>Q14: For pure shear (σx = σy = 0, τxy ≠ 0), Mohr’s Circle is:</h3>
+        <div class="options">
+          <label><input type="radio" name="q14" value="A"> A) A point</label>
+          <label><input type="radio" name="q14" value="B"> B) A line</label>
+          <label><input type="radio" name="q14" value="C"> C) A circle at origin</label>
+          <label><input type="radio" name="q14" value="D"> D) A circle centered at origin</label>
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question" data-answer="C">
+        <h3>Q15: For hydrostatic stress (σx = σy = σz), Mohr’s Circle is:</h3>
+        <div class="options">
+          <label><input type="radio" name="q15" value="A"> A) Circle with finite radius</label>
+          <label><input type="radio" name="q15" value="B"> B) Two circles</label>
+          <label><input type="radio" name="q15" value="C"> C) A point</label>
+          <label><input type="radio" name="q15" value="D"> D) Three circles</label>
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question" data-answer="B">
+        <h3>Q16: If maximum shear stress in 3D is τmax, then it occurs on plane:</h3>
+        <div class="options">
+          <label><input type="radio" name="q16" value="A"> A) Normal to σ2</label>
+          <label><input type="radio" name="q16" value="B"> B) At 45° between σ1 and σ3</label>
+          <label><input type="radio" name="q16" value="C"> C) At 90° from σ2</label>
+          <label><input type="radio" name="q16" value="D"> D) On principal plane</label>
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question" data-answer="D">
+        <h3>Q17: In 2D Mohr’s Circle, if τxy = 0 and σx ≠ σy, the circle reduces to:</h3>
+        <div class="options">
+          <label><input type="radio" name="q17" value="A"> A) A vertical line</label>
+          <label><input type="radio" name="q17" value="B"> B) A horizontal line</label>
+          <label><input type="radio" name="q17" value="C"> C) A circle at origin</label>
+          <label><input type="radio" name="q17" value="D"> D) A line segment on σ axis</label>
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question" data-answer="A">
+        <h3>Q18: The diameter of Mohr’s Circle represents:</h3>
+        <div class="options">
+          <label><input type="radio" name="q18" value="A"> A) Difference between principal stresses</label>
+          <label><input type="radio" name="q18" value="B"> B) Maximum shear stress</label>
+          <label><input type="radio" name="q18" value="C"> C) Hydrostatic stress</label>
+          <label><input type="radio" name="q18" value="D"> D) Sum of normal stresses</label>
+        </div>
+      </div>
+
+      <!-- Q19 -->
+      <div class="question" data-answer="C">
+        <h3>Q19: To draw Mohr’s Circle, one needs:</h3>
+        <div class="options">
+          <label><input type="radio" name="q19" value="A"> A) Only principal stresses</label>
+          <label><input type="radio" name="q19" value="B"> B) Only shear stress</label>
+          <label><input type="radio" name="q19" value="C"> C) Normal and shear stresses on a plane</label>
+          <label><input type="radio" name="q19" value="D"> D) Young’s modulus</label>
+        </div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="question" data-answer="B">
+        <h3>Q20: The relation between angle in physical plane (θ) and angle in Mohr’s Circle is:</h3>
+        <div class="options">
+          <label><input type="radio" name="q20" value="A"> A) Equal</label>
+          <label><input type="radio" name="q20" value="B"> B) Double</label>
+          <label><input type="radio" name="q20" value="C"> C) Half</label>
+          <label><input type="radio" name="q20" value="D"> D) Independent</label>
+        </div>
+      </div>
+
+      <button type="button" class="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
